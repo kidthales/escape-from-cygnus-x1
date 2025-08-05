@@ -1,0 +1,6 @@
+services:
+  toolkit:
+    image: ghcr.io/kidthales/gdtk:with-aseprite-2025-07-30
+    volumes:
+      - ./:/workspace
+    tty: true
