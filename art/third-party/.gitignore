@@ -1,2 +1,6 @@
-*
-!.gitignore
+/*
+!/.gitignore
+
+!/Space Shooter Pack by Rgsdev
+/Space Shooter Pack by Rgsdev/*
+!/Space Shooter Pack by Rgsdev/public-license.txt
