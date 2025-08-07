@@ -4,7 +4,7 @@ TOOLKIT = docker compose run --rm toolkit
 # Misc
 .DEFAULT_GOAL = help
 .PHONY        : help \
-                art art-clean backgrounds-clean \
+                art art-clean animations-clean backgrounds-clean \
                 lint lint-fix \
                 npm node_modules
 
@@ -14,10 +14,36 @@ help: ## Outputs this help screen.
 
 ## —— Art 🎨 ——————————————————————————————————————————————————————————————————————
 art: ## Export all art to the assets directory.
-art: backgrounds
+art: animations backgrounds
 
 art-clean: ## Remove all art from the assets directory.
 art-clean: backgrounds-clean
+
+#
+# Animations
+#
+ANIMATIONS = gameobjects-32x32
+
+ANIMATIONS_gameobjects-32x32_LAYER_OPTIONS = --layer Object
+
+ANIMATIONS_DST_DIR  = assets/animations
+ANIMATIONS_TARGETS := $(addprefix $(ANIMATIONS_DST_DIR)/,$(addsuffix .png,$(ANIMATIONS)) $(addsuffix .json,$(ANIMATIONS)))
+
+animations: ## Export all animation spritesheets & data to the assets directory.
+animations: $(ANIMATIONS_TARGETS)
+
+animations-clean: ## Remove all animation spritesheets & data from the assets directory.
+	@$(TOOLKIT) rm -rf $(ANIMATIONS_DST_DIR)
+
+$(ANIMATIONS_DST_DIR)/%.png: art/animations/%.aseprite
+	@$(TOOLKIT) ase --batch $(ANIMATIONS_$(basename $(notdir $<))_LAYER_OPTIONS) $< --sheet $@  --data $(@:.png=.json) \
+	--sheet-type packed --ignore-empty --merge-duplicates --border-padding 1 --shape-padding 1 --inner-padding 1 \
+	--trim --trim-sprite --filename-format {frame} --tagname-format {tag} --list-tags
+
+$(ANIMATIONS_TARGETS): | $(ANIMATIONS_DST_DIR)
+
+$(ANIMATIONS_DST_DIR):
+	@$(TOOLKIT) mkdir -p $(ANIMATIONS_DST_DIR)
 
 #
 # Backgrounds
