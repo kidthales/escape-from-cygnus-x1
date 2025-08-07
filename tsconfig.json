@@ -4,7 +4,7 @@
     "module": "NodeNext",
     "skipLibCheck": true,
     "outDir": "dist",
-    "types": ["phaser"],
+    "types": ["node", "phaser"],
 
     /* Bundler mode */
     "moduleResolution": "nodenext",
