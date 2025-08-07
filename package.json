@@ -7,15 +7,37 @@
     "lint": "concurrently --group --names eslint,prettier \"eslint --cache .\" \"prettier --check \\\"**/*.{html,css,scss,md,json,yaml,yml}\\\"\"",
     "lint:fix": "concurrently --group --names eslint,prettier \"eslint --cache --fix .\" \"prettier --write \\\"**/*.{html,css,scss,md,json,yaml,yml}\\\"\""
   },
+  "dependencies": {
+    "phaser": "4.0.0-rc.4",
+    "@picocss/pico": "2.1.1"
+  },
   "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
     "@eslint/eslintrc": "^3.3.1",
+    "@types/node": "^24.2.0",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
+    "babel-loader": "^10.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^9.2.0",
+    "copy-webpack-plugin": "^13.0.0",
+    "cross-env": "^10.0.0",
+    "css-loader": "^7.1.2",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.3",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.3",
     "prettier": "^3.6.2",
-    "typescript": "~5.9.2"
+    "sass": "^1.90.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.14",
+    "ts-loader": "^9.5.2",
+    "typescript": "~5.9.2",
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
   }
 }

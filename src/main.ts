@@ -4,4 +4,6 @@
  * @copyright 2025 Tristan Bonsor <https://www.gnu.org/licenses/agpl-3.0.txt>
  */
 
+import 'phaser';
+
 console.log('Hello World!');
