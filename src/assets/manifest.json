@@ -1,0 +1,18 @@
+{
+  "core": {
+    "files": [
+      {
+        "type": "aseprite",
+        "key": "animations/gameobjects-32x32",
+        "textureURL": "animations/gameobjects-32x32.png",
+        "atlasUrl": "animations/gameobjects-32x32.json"
+      },
+      {
+        "type": "image",
+        "key": "backgrounds/starfield-512x512",
+        "url": "backgrounds/starfield-512x512.png"
+      }
+    ],
+    "path": "assets"
+  }
+}

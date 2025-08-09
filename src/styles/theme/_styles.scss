@@ -1,0 +1,11 @@
+@use '@picocss/pico/scss/settings' as *;
+
+/**
+ * Extend Styles
+ */
+
+:root,
+:host {
+  // Typography
+  #{$css-var-prefix}font-family: Orbitron, var(#{$css-var-prefix}font-family-sans-serif);
+}

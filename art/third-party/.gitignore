@@ -1,6 +1,10 @@
 /*
 !/.gitignore
 
+!/Orbitron
+/Orbitron/*
+!/Orbitron/OFL.txt
+
 !/Space Shooter Pack by Rgsdev
 /Space Shooter Pack by Rgsdev/*
 !/Space Shooter Pack by Rgsdev/public-license.txt
