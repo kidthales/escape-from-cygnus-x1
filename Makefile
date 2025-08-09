@@ -4,7 +4,7 @@ TOOLKIT = docker compose run --rm toolkit
 # Misc
 .DEFAULT_GOAL = help
 .PHONY        : help \
-                art art-clean animations-clean backgrounds-clean \
+                art art-clean animations-clean backgrounds-clean fonts-clean \
                 lint lint-fix \
                 npm node_modules
 
@@ -14,10 +14,10 @@ help: ## Outputs this help screen.
 
 ## —— Art 🎨 ——————————————————————————————————————————————————————————————————————
 art: ## Export all art to the assets directory.
-art: animations backgrounds
+art: animations backgrounds fonts
 
 art-clean: ## Remove all art from the assets directory.
-art-clean: backgrounds-clean
+art-clean: animations-clean backgrounds-clean fonts-clean
 
 #
 # Animations
@@ -26,7 +26,7 @@ ANIMATIONS = gameobjects-32x32
 
 ANIMATIONS_gameobjects-32x32_LAYER_OPTIONS = --layer Object
 
-ANIMATIONS_DST_DIR  = assets/animations
+ANIMATIONS_DST_DIR  = src/assets/animations
 ANIMATIONS_TARGETS := $(addprefix $(ANIMATIONS_DST_DIR)/,$(addsuffix .png,$(ANIMATIONS)) $(addsuffix .json,$(ANIMATIONS)))
 
 animations: ## Export all animation spritesheets & data to the assets directory.
@@ -52,7 +52,7 @@ BACKGROUNDS = starfield-512x512
 
 BACKGROUNDS_starfield-512x512_LAYER_OPTIONS = --layer Space --layer Stars
 
-BACKGROUNDS_DST_DIR  = assets/backgrounds
+BACKGROUNDS_DST_DIR  = src/assets/backgrounds
 BACKGROUNDS_TARGETS := $(addprefix $(BACKGROUNDS_DST_DIR)/,$(addsuffix .png,$(BACKGROUNDS)))
 
 backgrounds: ## Export all backgrounds to the assets directory.
@@ -68,6 +68,28 @@ $(BACKGROUNDS_DST_DIR):
 
 backgrounds-clean: ## Remove all backgrounds from the assets directory.
 	@$(TOOLKIT) rm -rf $(BACKGROUNDS_DST_DIR)
+
+#
+# Fonts
+#
+FONTS = Orbitron-VariableFont_wght
+
+FONTS_DST_DIR = src/assets/fonts
+FONTS_TARGETS = $(addprefix $(FONTS_DST_DIR)/,$(addsuffix .ttf,$(FONTS)))
+
+fonts: ## Export all fonts to the assets directory.
+fonts: $(FONTS_TARGETS)
+
+$(FONTS_DST_DIR)/%.ttf: art/fonts/%.ttf
+	@$(TOOLKIT) cp $< $@
+
+$(FONTS_TARGETS): | $(FONTS_DST_DIR)
+
+$(FONTS_DST_DIR):
+	@$(TOOLKIT) mkdir -p $(FONTS_DST_DIR)
+
+fonts-clean: ## Remove all fonts from the assets directory.
+	@$(TOOLKIT) rm -rf $(FONTS_DST_DIR)
 
 ## —— Lint 🧹 —————————————————————————————————————————————————————————————————————
 lint: ## Scan files for style errors.
