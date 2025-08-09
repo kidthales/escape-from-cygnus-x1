@@ -1,10 +1,14 @@
 /**
- * @file Implements the application execution entrypoint.
+ * @file Implements the game entrypoint.
  * @author Tristan Bonsor <kidthales@agogpixel.com>
  * @copyright 2025 Tristan Bonsor <https://www.gnu.org/licenses/agpl-3.0.txt>
  */
 
 import 'phaser';
+
+import './styles/main.scss';
+
+import Stage from './game/stage';
 
 if (process.env.NODE_ENV === 'development') {
   // TODO
@@ -29,5 +33,6 @@ window.Game = new Phaser.Game({
     height,
     min: { width, height },
     snap: { width: snapWidth, height: snapHeight }
-  }
+  },
+  scene: Stage.scenes
 });
