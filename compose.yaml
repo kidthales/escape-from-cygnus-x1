@@ -1,6 +1,10 @@
 services:
   toolkit:
-    image: ghcr.io/kidthales/gdtk:with-aseprite-2025-07-30
+    image: ghcr.io/kidthales/gdtk:with-aseprite-2025-08-09.1
     volumes:
       - ./:/workspace
     tty: true
+    ports:
+      - target: 8080
+        published: ${HTTP_PORT:-8080}
+        protocol: tcp

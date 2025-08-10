@@ -3,7 +3,7 @@ TOOLKIT = docker compose run --rm toolkit
 
 # Misc
 .DEFAULT_GOAL = help
-.PHONY        : help \
+.PHONY        : help start start-prod \
                 art art-clean animations-clean backgrounds-clean fonts-clean \
                 lint lint-fix \
                 npm node_modules
@@ -11,6 +11,12 @@ TOOLKIT = docker compose run --rm toolkit
 ## —— 🔧 👾 Escape from Cygnus X1 Makefile 👾 🔧 ——————————————————————————————————
 help: ## Outputs this help screen.
 	@grep -E '(^[a-zA-Z0-9\./_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+
+start: ## Start webpack server in development mode.
+	@docker compose run --service-ports --rm toolkit npm start
+
+start-prod: ## Start webpack server in production mode.
+	@docker compose run --service-ports --rm toolkit npm start:prod
 
 ## —— Art 🎨 ——————————————————————————————————————————————————————————————————————
 art: ## Export all art to the assets directory.
