@@ -1,4 +1,5 @@
 .vscode
 dist
+src/assets
 package-lock.json
 package.json
