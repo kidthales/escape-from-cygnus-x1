@@ -8,6 +8,7 @@ import 'phaser';
 
 import './styles/main.scss';
 
+import NormalizedInputPlugin from './game/plugins/normalized-input';
 import Stage from './game/stage';
 
 if (process.env.NODE_ENV === 'development') {
@@ -34,5 +35,7 @@ window.Game = new Phaser.Game({
     min: { width, height },
     snap: { width: snapWidth, height: snapHeight }
   },
+  input: { touch: false, gamepad: true },
+  plugins: { scene: [NormalizedInputPlugin.pluginObjectItem] },
   scene: Stage.scenes
 });

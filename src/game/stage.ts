@@ -4,14 +4,21 @@
  * @copyright 2025 Tristan Bonsor <https://www.gnu.org/licenses/agpl-3.0.txt>
  */
 
+import type NormalizedInputPlugin from './plugins/normalized-input';
 import Splash from './dom/splash';
 
 export default class Stage extends Phaser.Scene {
+  declare normInput: NormalizedInputPlugin;
+
   static get scenes() {
     return [Stage];
   }
 
   private readonly _splash = new Splash(this);
+
+  constructor() {
+    super({ key: 'Stage', visible: false });
+  }
 
   preload() {
     this.load.json('manifest', 'assets/manifest.json').once(
